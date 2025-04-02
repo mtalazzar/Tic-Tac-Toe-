@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h>
+#define clrscr() system("clear")
 #define clearbuffer(x)  while (((x) = getchar())!= '\n');
 #define ConvertInput(a, b) { fila = (a) - 64;\
                             column = (b) - '0';}
@@ -17,6 +19,7 @@ int f = 0;
 int main(void){
     int a, b, x;
     do{
+        clrscr();
         PrintMatrix();
         printf("Donde quiere jugar, indicar con coordenadas: \n");
         a = getchar();
@@ -24,6 +27,8 @@ int main(void){
         clearbuffer(x)
         UserInput(a,b);
     }while(WinCondition());
+    clrscr();
+    WinCondition();
     PrintMatrix();
     return 0;
 }
@@ -45,7 +50,6 @@ int CheckPlayCondition(char a, char b){
     if ( (a < 'A' || 'C'< a) && (b < '1' || '3'<b)){
         return 0; 
     } else if ( matrix[fila][column] == '-'){
-        printf("Jugada Invalida\n\n");
         return 0;
     }
     return 1;
